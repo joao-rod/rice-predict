@@ -44,6 +44,7 @@ main {
 
 footer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -53,6 +54,23 @@ footer {
     background-color: #282a36;
 
     width: 80%;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-top: 5px;
+
+    font-size: 80%;
+
+    color: #4053bd;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #4053bd99;
 }
 
 @media screen and (max-width: 700px) {

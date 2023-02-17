@@ -44,5 +44,6 @@ def result():
         
     return render_template('home.html', alert=alert, result=result)
 
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host="192.168.1.14")
