@@ -16,6 +16,8 @@
     font-size: 50px;
     font-weight: 900;
 
+    max-width: 50%;
+
     padding: 1% 0.5% 1% 2%;
 
     background-color: #96969699;
@@ -90,7 +92,7 @@ form input:focus {
     border-radius: 5px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     #cover {
         display: flex;
         flex-direction: column;
@@ -101,6 +103,7 @@ form input:focus {
     }
 
     #cover h1 {
+        max-width: 100%;
         font-size: 40px;
     }
 
