@@ -1,0 +1,141 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock css %}
+
+{% block title %} Predição de tipos de grãos de arroz {% endblock title %}
+
+{% block content %}
+
+    <div id="cover">
+        <h1>ALGORITMOS DE CLASSIFICAÇÃO</h1>
+    </div>
+
+    <h4>
+        Este site foi desenvolvido como parte de uma atividade de cunho avaliativo para a disciplina
+        de Inteligência computacional do curso Sistemas de Informação do 
+        <a href="https://www.ifnmg.edu.br/januaria"target="_blank" rel="noopener noreferrer">IFNMG - Campus Januária</a>.
+    </h4>
+    <hr>
+
+    <div id="text">
+        <p>
+            Atualmente ouve-se muito falar dos algoritmos de machine learning, e para se ter um entendimento do que são
+            os classificadores, é necessário aprender sobre este tema primeiro.
+        </p>
+
+        <h3>MACHINE LEARNING</h3>
+        <p>
+            Resumidamente, este conceito é um ramo da ciência de dados que tem como objetivo
+            aplicar técnicas de mineração a fim de que sistemas de informação possam ser capazes de aprender
+            com dados e assim identificar padrões, muitas vezes imperceptíveis, e tomar decisões com poucas ou
+            nenhuma intervenção humana. Esses algoritmos são alimentados com bases de dados reais e visam aprender
+            com os erros ou com a interação com as pessoas. Há alguns tipos de aprendizado, o aprendizado supervisionado, o aprendizado não-supervisionado e o
+            aprendizado po reforço.
+        </p>
+
+        <h3>Aprendizado supervisionado</h3>
+        <p>
+            Neste tipo de aprendizado de máquina, o algoritmo conhece previamente as classes alvo
+            a serem trabalhadas, ou seja, o modelo é gerado a partir de exemplos já rotulados que 
+            são processados.
+        </p>
+
+        <h3>Aprendizado não-supervisionado</h3>
+        <p>
+            Ao contrário da modalidade anterior, neste tipo de aprendizado de máquina, o algoritmo 
+            não conhece previamente as classes alvo a serem trabalhadas, ou seja, não existem os 
+            rótulos para usar no modelo.
+        </p>
+
+        <h3>Aprendizado por reforço</h3>
+        <p>
+            Nesta modalidade, o modelo aprende executando ações e avaliando recompensas, ou seja, 
+            um agente realiza uma ação num dado ambiente, alterando seu estado inicial, o que gera uma
+            recompensa ao agente, isso se repete de forma cíclica, onde o agente avalia esta recompensa
+            e age novamente no ambiente, gerando o aprendizado.
+        </p>
+
+        <h3>ALGORITMOS CLASSIFICADORES</h3>
+        <p>
+            O objetivo da classificação é identificar, com base em um conjunto de atributos já conhecidos, 
+            a qual categoria pertence dada amostra. Podemos citar como exemplo se um email é SPAM ou não.
+        </p>
+
+        <h3>DA ATIVIDADE</h3>
+        <p>
+            O objetivo desta atividade avaliativa é escolher um dataset qualquer, tratar 
+            os dados dessa base de dados para que os algoritmos performem da melhor maneira, aplicar algoritmos
+            classificadores e gerar um modelo de machine learning. Após geração do modelo, criar um formulário
+            web para que o usuário insira dados quaisquer e aplique o modelo gerado nesses dados do usuário.
+        </p>
+
+        <h4>Segue abaixo formulário para preenchimento.</h4>
+
+    </div>
+
+    <form action="/result" method="post" id="form">
+        <label for="Area">Area do grão</label>
+        <input type="number" name="Area" id="Area" step="0.1" required>
+
+        <label for="MajorAxisLength">Comprimento do grão</label>
+        <input type="number" name="MajorAxisLength" id="MajorAxisLength" step="0.0000000001" required>
+
+        <label for="MinorAxisLength">Largura do grão</label>
+        <input type="number" name="MinorAxisLength" id="MinorAxisLength" step="0.0000000001" required>
+
+        <label for="Eccentricity">Excentricidade do grão</label>
+        <input type="number" name="Eccentricity" id="Eccentricity" step="0.0000000001" required>
+
+        <label for="ConvexArea">Área convexa do grão</label>
+        <input type="number" name="ConvexArea" id="ConvexArea" step="0.1" required>
+
+        <label for="EquivDiameter">Diâmetro aproximado do grão</label>
+        <input type="number" name="EquivDiameter" id="EquivDiameter" step="0.0000000001" required>
+
+        <label for="Extent">Extensão do arroz</label>
+        <input type="number" name="Extent" id="Extent" step="0.0000000001" required>
+
+        <label for="Perimeter">Perímetro do grão</label>
+        <input type="number" name="Perimeter" id="Perimeter" step="0.00001" required>
+
+        <label for="Roundness">Esfericidade do grão</label>
+        <input type="number" name="Roundness" id="Roundness" step="0.0000000001" required>
+
+        <label for="AspectRation">Proporção do grão</label>
+        <input type="number" name="AspectRation" id="AspectRation" step="0.0000000001" required>
+
+        <div class="btn">
+            <button type="submit">Realizar predição</button>
+        </div>
+    </form>
+
+    <script>
+        if ('{{alert}}' == 1) {
+            Swal.fire({
+                title: 'Resultado da predição',
+                html: `
+                    <p style="
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: #474a5e; 
+                        border: 1px solid #474a5e80;
+                        border-radius: 7px;
+                        padding: 10px;
+                    ">
+                        Com base nos dados inseridos, o modelo prediz que este 
+                        arroz é do tipo 
+                        <span style="
+                            border-radius: 7px; 
+                            background-color: #da666640; 
+                            padding: 1px 5px;
+                        ">{{result}}</span>.
+                    </p>`,
+                focusConfirm: true,
+                confirmButtonText: 'Voltar ao formulário',
+            })
+          }
+    </script>
+
+{% endblock content %}
